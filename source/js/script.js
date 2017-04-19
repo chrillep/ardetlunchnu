@@ -26,6 +26,11 @@ if (null !== urlParam('tid')) {
 else {
     var timeofday = '12:00:00';
 }
+
+arr = timeofday.split(':');
+arr[0] = arr[0] -2;
+timeofday = arr[0]+':'+arr[1]+':'+arr[2];
+
 today = yyyy+'-'+mm+'-'+dd+'T'+timeofday;
 
 var countDownDate = new Date(today).getTime();
