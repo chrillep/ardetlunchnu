@@ -1,5 +1,6 @@
-var urlParam = function(name) {
-    var results = new RegExp('[?&]' + name + '=([^&#]*)').exec(window.location.href);
+const urlParam = function (name) {
+    "use strict";
+    let results = new RegExp('[?&]' + name + '=([^&#]*)').exec(window.location.href);
     if (results === null) {
         return null;
     } else {
@@ -7,46 +8,45 @@ var urlParam = function(name) {
     }
 };
 
-var today = new Date();
-var dd = today.getDate();
-var mm = today.getMonth()+1;
-var yyyy = today.getFullYear();
+let today = new Date();
+let dd = today.getDate();
+let mm = today.getMonth() + 1;
+let yyyy = today.getFullYear();
 
 if (dd < 10) {
-    dd = '0'+dd;
-} 
+    dd = '0' + dd;
+}
 
 if (mm < 10) {
-    mm = '0'+mm;
+    mm = '0' + mm;
 }
 
-if (null !== urlParam('tid')) {
-    var timeofday = urlParam('tid');
+let timeofday = '12:00:00';
+
+if (urlParam('tid') !== null) {
+    timeofday = urlParam('tid');
 }
-else {
-    var timeofday = '12:00:00';
-}
 
-arr = timeofday.split(':');
-arr[0] = arr[0] -2;
-timeofday = arr[0]+':'+arr[1]+':'+arr[2];
+let arr = timeofday.split(':');
+arr[0] -= 2;
+timeofday = arr[0] + ':' + arr[1] + ':' + arr[2];
 
-today = yyyy+'-'+mm+'-'+dd+'T'+timeofday;
+today = yyyy + '-' + mm + '-' + dd + 'T' + timeofday;
 
-var countDownDate = new Date(today).getTime();
+let countDownDate = new Date(today).getTime();
 
-var x = setInterval(function() {
+const x = setInterval(function () {
+    "use strict";
+    let now = new Date().getTime();
+    let distance = countDownDate - now;
+    let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    let seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    var now = new Date().getTime();
-    var distance = countDownDate - now;
-    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    
-    document.getElementById("tid").innerHTML = 'Om <br/>' + hours + "h " + minutes + "m " + seconds + "s ";
-    
+    document.getElementById("tid").textContent = 'Om <br/>' + hours + "h " + minutes + "m " + seconds + "s ";
+
     if (distance < 0) {
         clearInterval(x);
-        document.getElementById("tid").innerHTML = "Ja! Det är lunch!";
+        document.getElementById("tid").textContent = "Ja! Det är lunch!";
     }
 }, 1000);
