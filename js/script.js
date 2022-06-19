@@ -8,7 +8,8 @@ const urlParam = name => {
 };
 
 const getHoursAndMinutesFromString = lunchTime => {
-    let lunchTimeSplit = lunchTime.split(':');
+    let decodedLunchTime = decodeURIComponent(lunchTime);
+    let lunchTimeSplit = decodedLunchTime.split(':');
     let hours = parseInt(lunchTimeSplit[0]);
     let minutes = parseInt(lunchTimeSplit[1]);
     return {hours, minutes};
