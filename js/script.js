@@ -1,10 +1,16 @@
+let tid = document.getElementById("tid");
+
+tid.addEventListener("input", () => {
+        const queryString = window.location.search;
+        let params = new URLSearchParams(queryString);
+        params.set('tid', tid.value);
+        window.location.search = params.toString();
+    }, false
+);
+
 const urlParam = name => {
-    let results = new RegExp('[?&]' + name + '=([^&#]*)').exec(window.location.href);
-    if (results === null) {
-        return null;
-    } else {
-        return results[1] || 0;
-    }
+    const queryString = window.location.search;
+    return new URLSearchParams(queryString).get(name);
 };
 
 const getHoursAndMinutesFromString = lunchTime => {
@@ -21,6 +27,7 @@ const getLunchTime = () => {
     if (urlParam('tid') !== null) {
         lunchTime = urlParam('tid');
     }
+    tid.value = lunchTime;
     let {hours, minutes} = getHoursAndMinutesFromString(lunchTime);
     today.setHours(hours, minutes, 0, 0);
     return today.getTime();
