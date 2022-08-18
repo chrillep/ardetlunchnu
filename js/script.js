@@ -1,13 +1,3 @@
-let tid = document.getElementById("tid");
-
-tid.addEventListener("input", () => {
-        const queryString = window.location.search;
-        let params = new URLSearchParams(queryString);
-        params.set('tid', tid.value);
-        window.location.search = params.toString();
-    }, false
-);
-
 const urlParam = name => {
     const queryString = window.location.search;
     return new URLSearchParams(queryString).get(name);
@@ -27,7 +17,6 @@ const getLunchTime = () => {
     if (urlParam('tid') !== null) {
         lunchTime = urlParam('tid');
     }
-    tid.value = lunchTime;
     let {hours, minutes} = getHoursAndMinutesFromString(lunchTime);
     today.setHours(hours, minutes, 0, 0);
     return today.getTime();

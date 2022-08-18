@@ -5,14 +5,17 @@
 	<meta content="width=device-width, initial-scale=1" name="viewport">
 	<title>Är det lunch?</title>
 	<link rel="stylesheet" href="css/style.css">
-	<script src="js/script.js" type="text/javascript" charset="utf-8" async defer></script>
 	<link href="favicon.png" id="favicon" rel="icon" type="image/png">
 </head>
 <body>
+
 <form>
-	<label for="tid">Lunchtid? </label><input id="tid" name="tid" required type="time">
+	<label for="tid">Lunchtid? </label><input id="tid" is="lunch-tid" name="tid" required type="time">
 </form>
 <h1 class="question" id="titel">Är det lunch?</h1>
 <div class="answer" id="lunchtid">Om <br>...</div>
+<script src="js/components/lunchtid.js"></script>
+<script src="js/script.js"></script>
+
 </body>
 </html>
