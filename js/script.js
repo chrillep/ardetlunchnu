@@ -1,3 +1,5 @@
+const defaultPageTitle = 'Är det lunch?';
+
 const urlParam = name => {
     const queryString = window.location.search;
     return new URLSearchParams(queryString).get(name);
@@ -17,6 +19,7 @@ const getLunchTime = () => {
     if (urlParam('tid') !== null) {
         lunchTime = urlParam('tid');
     }
+    document.title = defaultPageTitle + ' Lunchtid ' + lunchTime;
     let {hours, minutes} = getHoursAndMinutesFromString(lunchTime);
     today.setHours(hours, minutes, 0, 0);
     return today.getTime();
@@ -25,11 +28,14 @@ const getLunchTime = () => {
 const renderTimeLeft = (timeLeft, hours, minutes, seconds) => {
     if (timeLeft > 0) {
         document.getElementById("lunchtid").innerHTML = 'Om <br/> ' + hours + "h " + minutes + "m " + seconds + "s ";
+        document.title = defaultPageTitle + ' Lunch Om ' + hours + "h " + minutes + "m " + seconds + "s ";
     }
 
     if (timeLeft < 0) {
         clearInterval(arDetLunch);
         document.getElementById("lunchtid").textContent = "Ja! Det är lunch!";
+        document.title = defaultPageTitle + " Ja! Det är lunch!";
+
     }
 };
 
