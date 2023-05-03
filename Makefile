@@ -70,7 +70,18 @@ job2:  ## help for job 2
 job%:  ## help for job with wildcard
 	@echo "job $@"
 
-stylelint:  ## run stylelint
+lint: ## Run linters
+	@$(MAKE) eslint
+	@$(MAKE) jshint
+	@$(MAKE) stylelint
+
+eslint:  ## Run eslint
+	@npx eslint --fix '**/*.js'
+
+jshint:  ## Run js hint
+	@npx jshint --verbose 'js/'
+
+stylelint:  ## Run stylelint
 	@npx stylelint --fix '**/*.css'
 
 # vim:noexpandtab:ts=8:sw=8:ai

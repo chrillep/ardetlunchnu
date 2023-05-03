@@ -17,7 +17,7 @@
   "es3": false,
   "es5": false,
   "esnext": false,
-  "esversion":11,
+  "esversion": 11,
   "evil": false,
   "expr": false,
   "forin": true,
