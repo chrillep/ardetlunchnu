@@ -1,7 +1,7 @@
 {
   "theme_color": "#0a3c5c",
   "background_color": "#b2d4e6",
-  "display": "fullscreen",
+  "display": "minimal-ui",
   "scope": "/",
   "start_url": "/",
   "name": "Är det lunch?",
