@@ -1,5 +1,5 @@
 class LunchTid extends HTMLInputElement {
-  constructor () {
+  constructor() {
     super();
     if (this.urlParam("tid") !== null) {
       this.value = this.urlParam("tid");
@@ -11,19 +11,19 @@ class LunchTid extends HTMLInputElement {
     this.addEventListener("input", debouncedUserInput, false);
   }
 
-  urlParam (name) {
+  urlParam(name) {
     const queryString = window.location.search;
     return new URLSearchParams(queryString).get(name);
   }
 
-  userInput () {
+  userInput() {
     const queryString = window.location.search;
     const params = new URLSearchParams(queryString);
     params.set("tid", this.value);
     window.location.search = params.toString();
   }
 
-  debounce (func, delay = 2000) {
+  debounce(func, delay = 2000) {
     let timerId;
     return (...args) => {
       clearTimeout(timerId);

@@ -71,9 +71,13 @@ job%:  ## help for job with wildcard
 	@echo "job $@"
 
 lint: ## Run linters
+	@$(MAKE) prettier
 	@$(MAKE) eslint
 	@$(MAKE) jshint
 	@$(MAKE) stylelint
+
+prettier: ## Run prettier
+	@npx prettier --write .
 
 eslint:  ## Run eslint
 	@npx eslint --fix '**/*.js'
