@@ -28,17 +28,8 @@ const getLunchTime = () => {
 
 const renderTimeLeft = (timeLeft, hours, minutes, seconds) => {
   if (timeLeft > 0) {
-    document.getElementById("lunchtid").innerHTML =
-      "Om <br/> " + hours + "h " + minutes + "m " + seconds + "s ";
-    document.title =
-      defaultPageTitle +
-      " Lunch Om " +
-      hours +
-      "h " +
-      minutes +
-      "m " +
-      seconds +
-      "s ";
+    document.getElementById("lunchtid").innerHTML = "Om <br/> " + hours + "h " + minutes + "m " + seconds + "s ";
+    document.title = defaultPageTitle + " Lunch Om " + hours + "h " + minutes + "m " + seconds + "s ";
   }
 
   if (timeLeft < 0) {
@@ -52,9 +43,7 @@ const getTimeLeft = () => {
   const now = new Date().getTime();
   const lunchTime = getLunchTime();
   const timeLeft = lunchTime - now;
-  const hours = Math.floor(
-    (timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-  );
+  const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
 
   const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
   const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
