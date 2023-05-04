@@ -1,4 +1,4 @@
-navigator.serviceWorker.register("generate-sw.js");
+navigator.serviceWorker.register("service-worker.js");
 const defaultPageTitle = "Är det lunch?";
 
 const urlParam = (name) => {
