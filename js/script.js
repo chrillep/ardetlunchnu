@@ -62,7 +62,7 @@ const userInput = () => {
   const queryString = window.location.search;
   const params = new URLSearchParams(queryString);
   params.set("tid", timeInput.value);
-  window.location.search = params.toString();
+  window.location.search = decodeURIComponent(params.toString());
 };
 
 const debounce = (func, delay = 2000) => {
