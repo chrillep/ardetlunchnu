@@ -1,10 +1,17 @@
 navigator.serviceWorker.register("service-worker.js");
 const defaultPageTitle = "Är det lunch?";
+const timeInput = document.querySelector("#tid");
+let lunchTime = "12:00";
 
 const urlParam = (name) => {
   const queryString = window.location.search;
   return new URLSearchParams(queryString).get(name);
 };
+
+if (urlParam("tid") !== null) {
+  lunchTime = urlParam("tid");
+}
+timeInput.value = lunchTime;
 
 const getHoursAndMinutesFromString = (lunchTime) => {
   const decodedLunchTime = decodeURIComponent(lunchTime);
@@ -16,10 +23,6 @@ const getHoursAndMinutesFromString = (lunchTime) => {
 
 const getLunchTime = () => {
   const today = new Date();
-  let lunchTime = "12:00";
-  if (urlParam("tid") !== null) {
-    lunchTime = urlParam("tid");
-  }
   document.title = defaultPageTitle + " Lunchtid " + lunchTime;
   const { hours, minutes } = getHoursAndMinutesFromString(lunchTime);
   today.setHours(hours, minutes, 0, 0);
@@ -54,3 +57,23 @@ const arDetLunch = setInterval(() => {
   const { timeLeft, hours, minutes, seconds } = getTimeLeft();
   renderTimeLeft(timeLeft, hours, minutes, seconds);
 }, 1000);
+
+const userInput = () => {
+  const queryString = window.location.search;
+  const params = new URLSearchParams(queryString);
+  params.set("tid", timeInput.value);
+  window.location.search = params.toString();
+};
+
+const debounce = (func, delay = 2000) => {
+  let timerId;
+  return (...args) => {
+    clearTimeout(timerId);
+    timerId = setTimeout(() => {
+      func.apply(this, args);
+    }, delay);
+  };
+};
+
+const debouncedUserInput = debounce(userInput);
+timeInput.addEventListener("input", debouncedUserInput, false);
