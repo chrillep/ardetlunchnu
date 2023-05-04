@@ -89,7 +89,10 @@ stylelint:  ## Run stylelint
 	@npx stylelint --fix '**/*.css'
 
 server: ## Run a local server
-	@npx http-server -r -b -g -S -C cert.pem
+	@npx http-server -c-1
+
+server-https: ## Run a local server with https
+	@npx http-server -c-1 -S -C cert.pem
 
 server-cert-create: ## Create a self-signed certificate
 	@openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 3650 -new -nodes \
