@@ -88,4 +88,14 @@ jshint:  ## Run js hint
 stylelint:  ## Run stylelint
 	@npx stylelint --fix '**/*.css'
 
+server: ## Run a local server
+	@npx http-server -r -b -g -S -C cert.pem
+
+server-cert-create: ## Create a self-signed certificate
+	@openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 3650 -new -nodes \
+		-subj "/C=SE/ST=Stockholm/L=Stockholm/O=BeepBoop/OU=IT/CN=127.0.0.1"
+
+server-trust-cert: ## Trust the self-signed certificate
+	@sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain cert.pem
+
 # vim:noexpandtab:ts=8:sw=8:ai
