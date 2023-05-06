@@ -34,7 +34,7 @@ const getLunchTime = () => {
 const renderTimeLeft = (timeLeft, hours, minutes, seconds) => {
   if (timeLeft > 0) {
     lunchtid.innerHTML = "Om <br/> " + hours + "h " + minutes + "m " + seconds + "s ";
-    document.title = defaultPageTitle + " Lunch Om " + hours + "h " + minutes + "m " + seconds + "s ";
+    document.title = defaultPageTitle + " Om " + hours + "h " + minutes + "m " + seconds + "s ";
   }
 
   if (timeLeft < 0) {
