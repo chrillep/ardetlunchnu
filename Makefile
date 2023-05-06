@@ -90,7 +90,7 @@ stylelint:  ## Run stylelint
 	@npx stylelint --fix '**/*.css'
 
 htmlhint:  ## Run htmlhint
-	@npx htmlhint .
+	@npx htmlhint "**/*.html"
 
 server: ## Run a local server
 	@npx http-server -c-1
