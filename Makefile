@@ -75,6 +75,7 @@ lint: ## Run linters
 	@$(MAKE) eslint
 	@$(MAKE) jshint
 	@$(MAKE) stylelint
+	@$(MAKE) htmlhint
 
 prettier: ## Run prettier
 	@npx prettier --write .
@@ -87,6 +88,9 @@ jshint:  ## Run js hint
 
 stylelint:  ## Run stylelint
 	@npx stylelint --fix '**/*.css'
+
+htmlhint:  ## Run htmlhint
+	@npx htmlhint .
 
 server: ## Run a local server
 	@npx http-server -c-1
