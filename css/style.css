@@ -5,6 +5,10 @@ body {
   color: #0a3c5c;
 }
 
+#lunchform {
+  text-align: center;
+}
+
 #lunchtid,
 h1 {
   margin: 10vmin 0;
